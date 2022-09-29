@@ -1,0 +1,42 @@
+C:/msys64/mingw64/include/c++/11.2.0/chrono:525:2:constexpr std::chrono::duration<_Rep, _Period>::rep std::chrono::duration<_Rep, _Period>::count() const [with _Rep = long long int; _Period = std::ratio<1, 1000000000>]	16	static
+C:/msys64/mingw64/include/c++/11.2.0/chrono:611:2:static constexpr std::chrono::duration<_Rep, _Period> std::chrono::duration<_Rep, _Period>::zero() [with _Rep = long long int; _Period = std::ratio<1, 1000000000>]	64	static
+C:/msys64/mingw64/include/c++/11.2.0/chrono:509:23:constexpr std::chrono::duration<_Rep, _Period>::duration(const _Rep2&) [with _Rep2 = long long int; <template-parameter-2-2> = void; _Rep = long long int; _Period = std::ratio<1, 1000000000>]	16	static
+C:/msys64/mingw64/include/c++/11.2.0/chrono:419:2:static constexpr _Rep std::chrono::duration_values<_Rep>::zero() [with _Rep = long long int]	16	static
+C:/msys64/mingw64/include/stdio.h:368:5:)	80	static
+main.h:20:5:TEXTURE::TEXTURE()	16	static
+main.h:25:5:TEXTURE::~TEXTURE()	48	static
+main.h:37:9:TEXTURE::sGET_TIME::sGET_TIME()	64	static
+main.h:38:9:TEXTURE::sGET_TIME::~sGET_TIME()	80	static
+main.cpp:77:6:void Init()	64	static
+main.cpp:86:6:void TEXTURE::free()	48	static
+main.cpp:94:6:void TEXTURE::LoadTexture(const char*)	64	static
+main.cpp:110:6:void TEXTURE::render(int, int, SDL_Rect*)	64	static
+main.cpp:123:6:void LoadDims()	128	static
+main.cpp:343:6:void close()	48	static
+main.cpp:367:5:int SDL_main(int, char**)	160	static
+C:/msys64/mingw64/include/c++/11.2.0/chrono:877:2:constexpr std::chrono::time_point<_Clock, _Dur>::duration std::chrono::time_point<_Clock, _Dur>::time_since_epoch() const [with _Clock = std::chrono::_V2::system_clock; _Dur = std::chrono::duration<long long int, std::ratio<1, 1000000000> >]	16	static
+C:/msys64/mingw64/include/c++/11.2.0/chrono:861:12:constexpr std::chrono::time_point<_Clock, _Dur>::time_point() [with _Clock = std::chrono::_V2::system_clock; _Dur = std::chrono::duration<long long int, std::ratio<1, 1000000000> >]	64	static
+C:/msys64/mingw64/include/c++/11.2.0/chrono:1024:7:constexpr typename std::common_type<_Duration1, _Duration2>::type std::chrono::operator-(const std::chrono::time_point<_Clock, _Duration1>&, const std::chrono::time_point<_Clock, _Duration2>&) [with _Clock = std::chrono::_V2::system_clock; _Dur1 = std::chrono::duration<long long int, std::ratio<1, 1000000000> >; _Dur2 = std::chrono::duration<long long int, std::ratio<1, 1000000000> >]	64	static
+C:/msys64/mingw64/include/c++/11.2.0/chrono:517:14:constexpr std::chrono::duration<_Rep, _Period>::duration(const std::chrono::duration<_Rep, _Period>&) [with _Rep2 = long long int; _Period2 = std::ratio<1, 1000000000>; <template-parameter-2-3> = void; _Rep = float; _Period = std::ratio<1>]	64	static
+C:/msys64/mingw64/include/c++/11.2.0/chrono:647:7:constexpr typename std::common_type<std::chrono::duration<_Rep1, _Period1>, std::chrono::duration<_Rep2, _Period2> >::type std::chrono::operator-(const std::chrono::duration<_Rep1, _Period1>&, const std::chrono::duration<_Rep2, _Period2>&) [with _Rep1 = long long int; _Period1 = std::ratio<1, 1000000000>; _Rep2 = long long int; _Period2 = std::ratio<1, 1000000000>]	96	static
+C:/msys64/mingw64/include/c++/11.2.0/chrono:254:7:constexpr std::chrono::__enable_if_is_duration<_ToDur> std::chrono::duration_cast(const std::chrono::duration<_Rep, _Period>&) [with _ToDur = std::chrono::duration<float>; _Rep = long long int; _Period = std::ratio<1, 1000000000>]	48	static
+C:/msys64/mingw64/include/c++/11.2.0/chrono:525:2:constexpr std::chrono::duration<_Rep, _Period>::rep std::chrono::duration<_Rep, _Period>::count() const [with _Rep = float; _Period = std::ratio<1>]	16	static
+C:/msys64/mingw64/include/c++/11.2.0/chrono:210:4:static constexpr _ToDur std::chrono::__duration_cast_impl<_ToDur, _CF, _CR, true, false>::__cast(const std::chrono::duration<_Rep, _Period>&) [with _Rep = long long int; _Period = std::ratio<1, 1000000000>; _ToDur = std::chrono::duration<float>; _CF = std::ratio<1, 1000000000>; _CR = float]	64	static
+C:/msys64/mingw64/include/c++/11.2.0/chrono:509:23:constexpr std::chrono::duration<_Rep, _Period>::duration(const _Rep2&) [with _Rep2 = float; <template-parameter-2-2> = void; _Rep = float; _Period = std::ratio<1>]	16	static
+main.cpp:26:9:void __tcf_0()	48	static
+main.cpp:27:9:void __tcf_1()	48	static
+main.cpp:28:9:void __tcf_2()	48	static
+main.cpp:29:9:void __tcf_3()	48	static
+main.cpp:32:9:void __tcf_4()	48	static
+main.cpp:33:9:void __tcf_5()	48	static
+main.cpp:34:9:void __tcf_6()	48	static
+main.cpp:35:9:void __tcf_7()	48	static
+main.cpp:38:9:void __tcf_8()	48	static
+main.cpp:39:9:void __tcf_9()	48	static
+main.cpp:40:9:void __tcf_10()	48	static
+main.cpp:41:9:void __tcf_11()	48	static
+main.cpp:44:9:void __tcf_12()	48	static
+main.cpp:47:9:void __tcf_13()	48	static
+main.cpp:50:9:void __tcf_14()	64	static
+main.cpp:618:1:void __static_initialization_and_destruction_0(int, int)	64	static
+main.cpp:618:1:cpp)	48	static
