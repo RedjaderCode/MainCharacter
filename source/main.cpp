@@ -3,8 +3,8 @@
 #include "main.h"
 
 const char * Title = "Game Just for you";
-const uint16_t nScreenWidth = 640;
-const uint16_t nScreenHeight = 400;
+const uint16_t nScreenWidth = 960;//640;
+const uint16_t nScreenHeight = 630;//400;
 
 SDL_Window * cWindow;
 SDL_Renderer * cRender;
@@ -21,6 +21,9 @@ uint16_t IMGH;
 
 uint8_t MAP_IMGW;
 uint8_t MAP_IMGH;
+
+uint8_t GRASS_IMGW = 31;
+uint8_t GRASS_IMGH = 47;
 
 // ANIMATION FRAMES
 TEXTURE _side_walk;
@@ -222,9 +225,10 @@ void LoadDims(){
 	MapSpriteTexture[ SLANT_TREE ] = {95, 177, 59, 63};
 	MapSpriteTexture[ TRI_TREE ] = {154, 177, 58, 63};
 
-	MapSpriteTexture[ GRASS_GROUND ] = {};
-	MapSpriteTexture[ DIRT_GROUND ] = {};
-	MapSpriteTexture[ SEED_GROUND ] = {};
+	MapSpriteTexture[ GRASS_GROUND ] = {81, 65, 31, 47};
+	MapSpriteTexture[ GRASS_CYCLOPS ] = {113, 81, 47, 15};
+	MapSpriteTexture[ GRASS_SNAKEEYES ] = {0, 65, 32, 47};
+	MapSpriteTexture[ GRASS_GRASSBLOCK ] = {33, 65, 47, 47};
 
 	MAP_IMGW = IMGW;
 	MAP_IMGH = IMGH;
@@ -366,12 +370,14 @@ int main(int s, char * z[]){
 	uint8_t nFrame = 0;
 	uint8_t nFrameMagic = 0;
 	const uint8_t * input = SDL_GetKeyboardState(NULL);
+	uint16_t nMapGrassIteration = 4;
+	uint8_t TREES = 10;
 
 	uint16_t RandomWidth[ NUM_OF_MAP_SPRITES ];
 	uint16_t RandomHeight[ NUM_OF_MAP_SPRITES ];
 	uint8_t RandomTree[ NUM_OF_MAP_SPRITES ];
 
-	for(int i=0; i<TRI_TREE + 1; i++){
+	for(int i=0; i<TRI_TREE + TREES; i++){
 		RandomWidth[i] = rand() % (int)(nScreenWidth * 0.75) + (int)(nScreenWidth * 0.10);
 		for(int i=0; i<TRI_TREE + 1; i++){
 			for(int y=0; y<TRI_TREE + 1; y++){
@@ -431,7 +437,15 @@ int main(int s, char * z[]){
 					}
 		}
 
-		for(int i=0; i<TRI_TREE + 1; i++){
+		// GRASS LAYER
+		for(int y=0; y <= nScreenHeight - GRASS_IMGH; y += GRASS_IMGH){
+			for(int x=0; x <= nScreenWidth - GRASS_IMGW; x += GRASS_IMGW){
+				_Map_Sprite[ nMapGrassIteration ].render(x, y, &MapSpriteTexture[ GRASS_GROUND ]);
+			}
+		}
+
+		// TREES
+		for(int i=0; i<TRI_TREE + TREES; i++){
 			_Map_Sprite[ RandomTree[i] ].render(RandomWidth[i], RandomHeight[i], &MapSpriteTexture[ RandomTree[i] ]);
 		}
 		
@@ -447,25 +461,17 @@ int main(int s, char * z[]){
 
 			if(input[ SDL_SCANCODE_F]){
 
-				bool LastFrame = false;
 				nFrame = 0;
-		
-				while(!LastFrame){
+
+				for(int i=0; i < NUM_OF_FRAMES_ATTACK; i++){
 
 					nFrame++;
 					if((nFrame + 1) / NUM_OF_FRAMES_ATTACK < NUM_OF_FRAMES_ATTACK){
-
 						_side_attack.render(WALK_IMG_POS_X, WALK_IMG_POS_Y, &SideAttackSpriteTexture[(nFrame + 1) / NUM_OF_FRAMES_ATTACK]);
-
-						SDL_RenderPresent(cRender);
+					SDL_RenderPresent(cRender);
 					}
-					else{
-
-						LastFrame = true;
-						key = ' ';
-					}
-				}	
-			}	
+				}
+			}
 		}
 		else if(key == 's'){ _down_walk.render(WALK_IMG_POS_X, WALK_IMG_POS_Y, &DownWalkSpriteTexture[(nFrame + 1) / NUM_OF_FRAMES_WALK]);
 
@@ -478,25 +484,17 @@ int main(int s, char * z[]){
 				WALK_IMG_POS_Y = nScreenHeight * 0.65;
 			
 			if(input[ SDL_SCANCODE_F]){
-						
-				bool LastFrame = false;
+				
 				nFrame = 0;
-		
-				while(!LastFrame){
+
+				for(int i=0; i < NUM_OF_FRAMES_ATTACK; i++){
 
 					nFrame++;
 					if((nFrame + 1) / NUM_OF_FRAMES_ATTACK < NUM_OF_FRAMES_ATTACK){
-
 						_down_attack.render(WALK_IMG_POS_X, WALK_IMG_POS_Y, &DownAttackSpriteTexture[(nFrame + 1) / NUM_OF_FRAMES_ATTACK]);
-
-						SDL_RenderPresent(cRender);
+					SDL_RenderPresent(cRender);
 					}
-					else{
-
-						LastFrame = true;
-						key = ' ';
-					}
-				}	
+				}
 			}
 		}
 		else if(key == 'w'){ _up_walk.render(WALK_IMG_POS_X, WALK_IMG_POS_Y, &UpWalkSpriteTexture[(nFrame + 1) / NUM_OF_FRAMES_WALK]);
@@ -511,24 +509,16 @@ int main(int s, char * z[]){
 
 			if(input[ SDL_SCANCODE_F]){
 						
-				bool LastFrame = false;
 				nFrame = 0;
-		
-				while(!LastFrame){
+
+				for(int i=0; i < NUM_OF_FRAMES_ATTACK; i++){
 
 					nFrame++;
 					if((nFrame + 1) / NUM_OF_FRAMES_ATTACK < NUM_OF_FRAMES_ATTACK){
-
 						_up_attack.render(WALK_IMG_POS_X, WALK_IMG_POS_Y, &UpAttackSpriteTexture[(nFrame + 1) / NUM_OF_FRAMES_ATTACK]);
-
-						SDL_RenderPresent(cRender);
+					SDL_RenderPresent(cRender);
 					}
-					else{
-
-						LastFrame = true;
-						key = ' ';
-					}
-				}	
+				}
 			}
 		}
 		else if(key == 'd'){ _right_walk.render(WALK_IMG_POS_X, WALK_IMG_POS_Y, &RightWalkSpriteTexture[(nFrame + 2) / NUM_OF_FRAMES_WALK]);
@@ -543,24 +533,16 @@ int main(int s, char * z[]){
 
 			if(input[ SDL_SCANCODE_F]){
 						
-				bool LastFrame = false;
 				nFrame = 0;
-		
-				while(!LastFrame){
+
+				for(int i=0; i < NUM_OF_FRAMES_ATTACK; i++){
 
 					nFrame++;
 					if((nFrame + 1) / NUM_OF_FRAMES_ATTACK < NUM_OF_FRAMES_ATTACK){
-
 						_right_attack.render(WALK_IMG_POS_X, WALK_IMG_POS_Y, &RightAttackSpriteTexture[(nFrame + 1) / NUM_OF_FRAMES_ATTACK]);
-
-						SDL_RenderPresent(cRender);
+					SDL_RenderPresent(cRender);
 					}
-					else{
-
-						LastFrame = true;
-						key = ' ';
-					}
-				}	
+				}
 			}
 		}
 		else if(key == 'e'){
