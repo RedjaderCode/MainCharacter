@@ -14,6 +14,7 @@ const uint8_t NUM_OF_FRAMES_WALK = 5;// MOVEMENT FRAMES
 const uint8_t NUM_OF_FRAMES_ATTACK = 2;// ATTACK FRAMES
 const uint8_t NUM_OF_FRAMES_IDLE = 4;// IDLE FRAMES
 const uint8_t NUM_OF_FRAMES_MAGIC = 75;// MAGIC FRAMES
+const uint8_t NUM_OF_FRAMES_WATERFALL = 6;// WATERFALL FRAMES
 const uint8_t FRAMES_ANIMATION = (NUM_OF_FRAMES_ATTACK + NUM_OF_FRAMES_IDLE + NUM_OF_FRAMES_WALK) * 2.5;
 
 uint16_t IMGW;
@@ -22,8 +23,11 @@ uint16_t IMGH;
 uint8_t MAP_IMGW;
 uint8_t MAP_IMGH;
 
-uint8_t GRASS_IMGW = 31;
-uint8_t GRASS_IMGH = 47;
+uint8_t WATERFALL_IMGW;
+uint8_t WATERFALL_IMGH;
+
+uint8_t GRASS_IMGW = 35;//31;
+uint8_t GRASS_IMGH = 22;//47;
 
 // ANIMATION FRAMES
 TEXTURE _side_walk;
@@ -75,9 +79,9 @@ SDL_Rect PickUpSpriteTexture[ NUM_OF_FRAMES_IDLE ];
 SDL_Rect MagicSpellSpriteTexture[ NUM_OF_FRAMES_MAGIC ];
 
 // MAP SPRITES
-SDL_Rect MapSpriteTexture[ NUM_OF_MAP_SPRITES ];
+SDL_Rect MapSpriteTexture[ NUM_OF_WATER_SPRITES ][ NUM_OF_WATER_SPRITES ];
 
-void Init(){
+inline void Init(){
 
 	SDL_Init(SDL_INIT_EVERYTHING);
 	IMG_Init(IMG_INIT_PNG);
@@ -123,7 +127,7 @@ void TEXTURE::render(int x, int y, SDL_Rect * clip){
 	SDL_RenderCopy(cRender, cTexture, clip, &rec);
 }
 
-void LoadDims(){
+inline void LoadDims(){
 
 	TEXTURE::sGET_TIME s;
 	
@@ -220,18 +224,51 @@ void LoadDims(){
 		_Map_Sprite[i].LoadTexture("assets/map/grasstileset.png");
 	}
 
-	MapSpriteTexture[ RIGHT_TREE ] = {0, 177, 48, 63};
-	MapSpriteTexture[ BULB_TREE ] = {48, 177, 47, 63};
-	MapSpriteTexture[ SLANT_TREE ] = {95, 177, 59, 63};
-	MapSpriteTexture[ TRI_TREE ] = {154, 177, 58, 63};
+	MapSpriteTexture[ RIGHT_TREE ][ NUM_OF_MAP_SPRITES ] = {0, 177, 48, 63};
+	MapSpriteTexture[ BULB_TREE ][ NUM_OF_MAP_SPRITES ] = {48, 177, 47, 63};
+	MapSpriteTexture[ SLANT_TREE ][ NUM_OF_MAP_SPRITES ] = {95, 177, 59, 63};
+	MapSpriteTexture[ TRI_TREE ][ NUM_OF_MAP_SPRITES ] = {154, 177, 58, 63};
 
-	MapSpriteTexture[ GRASS_GROUND ] = {81, 65, 31, 47};
-	MapSpriteTexture[ GRASS_CYCLOPS ] = {113, 81, 47, 15};
-	MapSpriteTexture[ GRASS_SNAKEEYES ] = {0, 65, 32, 47};
-	MapSpriteTexture[ GRASS_GRASSBLOCK ] = {33, 65, 47, 47};
+	MapSpriteTexture[ GRASS_GROUND ][ NUM_OF_MAP_SPRITES ] = {81, 65, 31, 47};
+	MapSpriteTexture[ GRASS_CYCLOPS ][ NUM_OF_MAP_SPRITES ] = {113, 81, 47, 15};
+	MapSpriteTexture[ GRASS_SNAKEEYES ][ NUM_OF_MAP_SPRITES ] = {0, 65, 32, 47};
+	MapSpriteTexture[ GRASS_GRASSBLOCK ][ NUM_OF_MAP_SPRITES ] = {33, 65, 47, 47};
 
 	MAP_IMGW = IMGW;
 	MAP_IMGH = IMGH;
+
+	//////////////////////////////////////////////////////////////////////////////
+	_Map_Sprite[ WATERFALL_MOUNTAIN ].LoadTexture("assets/water/Mountain.png");
+	MapSpriteTexture[ WATERFALL_MOUNTAIN ][ NUM_OF_WATER_SPRITES ] = {0, 0, IMGW, IMGH};
+
+	MapSpriteTexture[ WATERFALL_MOUNTAIN ][0] = {0, 0, 20, 110};
+	MapSpriteTexture[ WATERFALL_MOUNTAIN ][1] = {21, 0, 18, 110};
+	MapSpriteTexture[ WATERFALL_MOUNTAIN ][2] = {85, 0, 28, 110};
+	MapSpriteTexture[ WATERFALL_MOUNTAIN ][3] = {113, 0, 15, 110};
+	//////////////////////////////////////////////////////////////////////////////
+
+	// WATER ANIMATIONS
+	float n1_6 = 0.16666666666666666666666666666667;
+	float n2_6 = 0.33333333333333333333333333333333;
+	float n4_6 = 0.66666666666666666666666666666667;
+	float n5_6 = 0.83333333333333333333333333333333;
+
+	_Map_Sprite[ WATERFALL_ANIMATION ].LoadTexture("assets/water/Waterfall(Water).png");
+
+	MapSpriteTexture[ WATERFALL_ANIMATION ][0] = {0, 0, IMGW * n1_6, IMGH};
+	MapSpriteTexture[ WATERFALL_ANIMATION ][1] = {IMGW * n1_6, 0, IMGW * n1_6, IMGH};
+	MapSpriteTexture[ WATERFALL_ANIMATION ][2] = {IMGW * n2_6, 0, IMGW * n1_6, IMGH};
+	MapSpriteTexture[ WATERFALL_ANIMATION ][3] = {IMGW * 0.5, 0, IMGW * n1_6, IMGH};
+	MapSpriteTexture[ WATERFALL_ANIMATION ][4] = {IMGW * n4_6, 0, IMGW * n1_6, IMGH};
+	MapSpriteTexture[ WATERFALL_ANIMATION ][5] = {IMGW * n5_6, 0, IMGW * n1_6, IMGH};
+
+	WATERFALL_IMGW = IMGW;
+	WATERFALL_IMGH = IMGH;
+
+	/////////////////////////////////////////////////////////////////////////
+	_Map_Sprite[ GRASS_WATERFALL ].LoadTexture("assets/water/Mountain.png");
+	MapSpriteTexture[ GRASS_WATERFALL ][ NUM_OF_MAP_SPRITES ] = {0, 0, 35, 22};
+	/////////////////////////////////////////////////////////////////////////
 
 	// ANIMATION FRAMES
 	_side_walk.LoadTexture("assets/_side_walk.png");
@@ -367,10 +404,13 @@ int main(int s, char * z[]){
 	printf("Controls:\n\n    w\n   asd\n\n Left Alt: Magic Powers \n E: Pick up\n F: Attack -> it needs work lol. You have to move for it to work\n\n\t");
 
 	bool running = true;
+
 	uint8_t nFrame = 0;
 	uint8_t nFrameMagic = 0;
+	uint8_t nFrameWaterFall = 0;
+
 	const uint8_t * input = SDL_GetKeyboardState(NULL);
-	uint16_t nMapGrassIteration = 4;
+	
 	uint8_t TREES = 10;
 
 	uint16_t RandomWidth[ NUM_OF_MAP_SPRITES ];
@@ -400,6 +440,11 @@ int main(int s, char * z[]){
 
 		RandomTree[i] = rand() % (TRI_TREE + 1) + RIGHT_TREE;
 	}
+
+	uint8_t R[3];
+
+	for(int i=0; i<4; i++)
+		R[i] = rand() % 3;
 
 	Init();
 	LoadDims();
@@ -440,13 +485,29 @@ int main(int s, char * z[]){
 		// GRASS LAYER
 		for(int y=0; y <= nScreenHeight - GRASS_IMGH; y += GRASS_IMGH){
 			for(int x=0; x <= nScreenWidth - GRASS_IMGW; x += GRASS_IMGW){
-				_Map_Sprite[ nMapGrassIteration ].render(x, y, &MapSpriteTexture[ GRASS_GROUND ]);
+				_Map_Sprite[ GRASS_WATERFALL ].render(x, y, &MapSpriteTexture[ GRASS_WATERFALL ][ NUM_OF_MAP_SPRITES ]);
 			}
 		}
+		// WATER FALL AND CLIFF-SIDE
+		for(int x=128; x <= nScreenWidth; x += 28){
+			_Map_Sprite[ WATERFALL_MOUNTAIN ].render(x, 0, &MapSpriteTexture[ WATERFALL_MOUNTAIN ][2]);
+		}
+		
+		_Map_Sprite[ WATERFALL_MOUNTAIN ].render(NULL, NULL, &MapSpriteTexture[ WATERFALL_MOUNTAIN ][ NUM_OF_WATER_SPRITES ]);
+		_Map_Sprite[ WATERFALL_ANIMATION ].render(NULL, NULL, &MapSpriteTexture[ WATERFALL_ANIMATION ][(nFrameWaterFall + 1) / 4]);
+		nFrameWaterFall++;
+		if((nFrameWaterFall + 1) / 4 > NUM_OF_FRAMES_WATERFALL - 1)
+			nFrameWaterFall = 0;
 
 		// TREES
 		for(int i=0; i<TRI_TREE + TREES; i++){
-			_Map_Sprite[ RandomTree[i] ].render(RandomWidth[i], RandomHeight[i], &MapSpriteTexture[ RandomTree[i] ]);
+			if(RandomWidth[i] <= 128){
+				RandomWidth[i] + 150;
+			}
+			if(RandomHeight[i] <= 128){
+				RandomHeight[i] + 150;
+			}
+			_Map_Sprite[ RandomTree[i] ].render(RandomWidth[i], RandomHeight[i], &MapSpriteTexture[ RandomTree[i] ][ NUM_OF_MAP_SPRITES ]);
 		}
 		
 		if(key == 'a'){ _side_walk.render(WALK_IMG_POS_X, WALK_IMG_POS_Y, &SideWalkSpriteTexture[(nFrame + 1) / NUM_OF_FRAMES_WALK]);
@@ -504,8 +565,8 @@ int main(int s, char * z[]){
 				nFrame = 0;
 
 			WALK_IMG_POS_Y -= NUM_OF_FRAMES_WALK / 1.5;
-			if((WALK_IMG_POS_Y - NUM_OF_FRAMES_WALK) < nScreenHeight * 0.05)
-				WALK_IMG_POS_Y = nScreenHeight * 0.05;
+			if((WALK_IMG_POS_Y - NUM_OF_FRAMES_WALK) < nScreenHeight * 0.15)
+				WALK_IMG_POS_Y = nScreenHeight * 0.15;
 
 			if(input[ SDL_SCANCODE_F]){
 						

@@ -7,13 +7,13 @@ main.h:20:5:TEXTURE::TEXTURE()	16	static
 main.h:25:5:TEXTURE::~TEXTURE()	48	static
 main.h:37:9:TEXTURE::sGET_TIME::sGET_TIME()	64	static
 main.h:38:9:TEXTURE::sGET_TIME::~sGET_TIME()	80	static
-main.cpp:80:6:void Init()	64	static
-main.cpp:89:6:void TEXTURE::free()	48	static
-main.cpp:97:6:void TEXTURE::LoadTexture(const char*)	64	static
-main.cpp:113:6:void TEXTURE::render(int, int, SDL_Rect*)	64	static
-main.cpp:126:6:void LoadDims()	128	static
-main.cpp:341:6:void close()	48	static
-main.cpp:365:5:int SDL_main(int, char**)	224	static
+main.cpp:84:13:void Init()	64	static
+main.cpp:93:6:void TEXTURE::free()	48	static
+main.cpp:101:6:void TEXTURE::LoadTexture(const char*)	64	static
+main.cpp:117:6:void TEXTURE::render(int, int, SDL_Rect*)	64	static
+main.cpp:130:13:void LoadDims()	144	static
+main.cpp:378:6:void close()	48	static
+main.cpp:402:5:int SDL_main(int, char**)	224	static
 C:/msys64/mingw64/include/c++/11.2.0/chrono:877:2:constexpr std::chrono::time_point<_Clock, _Dur>::duration std::chrono::time_point<_Clock, _Dur>::time_since_epoch() const [with _Clock = std::chrono::_V2::system_clock; _Dur = std::chrono::duration<long long int, std::ratio<1, 1000000000> >]	16	static
 C:/msys64/mingw64/include/c++/11.2.0/chrono:861:12:constexpr std::chrono::time_point<_Clock, _Dur>::time_point() [with _Clock = std::chrono::_V2::system_clock; _Dur = std::chrono::duration<long long int, std::ratio<1, 1000000000> >]	64	static
 C:/msys64/mingw64/include/c++/11.2.0/chrono:1024:7:constexpr typename std::common_type<_Duration1, _Duration2>::type std::chrono::operator-(const std::chrono::time_point<_Clock, _Duration1>&, const std::chrono::time_point<_Clock, _Duration2>&) [with _Clock = std::chrono::_V2::system_clock; _Dur1 = std::chrono::duration<long long int, std::ratio<1, 1000000000> >; _Dur2 = std::chrono::duration<long long int, std::ratio<1, 1000000000> >]	64	static
@@ -23,20 +23,20 @@ C:/msys64/mingw64/include/c++/11.2.0/chrono:254:7:constexpr std::chrono::__enabl
 C:/msys64/mingw64/include/c++/11.2.0/chrono:525:2:constexpr std::chrono::duration<_Rep, _Period>::rep std::chrono::duration<_Rep, _Period>::count() const [with _Rep = float; _Period = std::ratio<1>]	16	static
 C:/msys64/mingw64/include/c++/11.2.0/chrono:210:4:static constexpr _ToDur std::chrono::__duration_cast_impl<_ToDur, _CF, _CR, true, false>::__cast(const std::chrono::duration<_Rep, _Period>&) [with _Rep = long long int; _Period = std::ratio<1, 1000000000>; _ToDur = std::chrono::duration<float>; _CF = std::ratio<1, 1000000000>; _CR = float]	64	static
 C:/msys64/mingw64/include/c++/11.2.0/chrono:509:23:constexpr std::chrono::duration<_Rep, _Period>::duration(const _Rep2&) [with _Rep2 = float; <template-parameter-2-2> = void; _Rep = float; _Period = std::ratio<1>]	16	static
-main.cpp:29:9:void __tcf_0()	48	static
-main.cpp:30:9:void __tcf_1()	48	static
-main.cpp:31:9:void __tcf_2()	48	static
-main.cpp:32:9:void __tcf_3()	48	static
-main.cpp:35:9:void __tcf_4()	48	static
-main.cpp:36:9:void __tcf_5()	48	static
-main.cpp:37:9:void __tcf_6()	48	static
-main.cpp:38:9:void __tcf_7()	48	static
-main.cpp:41:9:void __tcf_8()	48	static
-main.cpp:42:9:void __tcf_9()	48	static
-main.cpp:43:9:void __tcf_10()	48	static
-main.cpp:44:9:void __tcf_11()	48	static
-main.cpp:47:9:void __tcf_12()	48	static
-main.cpp:50:9:void __tcf_13()	48	static
-main.cpp:53:9:void __tcf_14()	64	static
-main.cpp:594:1:void __static_initialization_and_destruction_0(int, int)	64	static
-main.cpp:594:1:cpp)	48	static
+main.cpp:33:9:void __tcf_0()	48	static
+main.cpp:34:9:void __tcf_1()	48	static
+main.cpp:35:9:void __tcf_2()	48	static
+main.cpp:36:9:void __tcf_3()	48	static
+main.cpp:39:9:void __tcf_4()	48	static
+main.cpp:40:9:void __tcf_5()	48	static
+main.cpp:41:9:void __tcf_6()	48	static
+main.cpp:42:9:void __tcf_7()	48	static
+main.cpp:45:9:void __tcf_8()	48	static
+main.cpp:46:9:void __tcf_9()	48	static
+main.cpp:47:9:void __tcf_10()	48	static
+main.cpp:48:9:void __tcf_11()	48	static
+main.cpp:51:9:void __tcf_12()	48	static
+main.cpp:54:9:void __tcf_13()	48	static
+main.cpp:57:9:void __tcf_14()	64	static
+main.cpp:655:1:void __static_initialization_and_destruction_0(int, int)	64	static
+main.cpp:655:1:cpp)	48	static
